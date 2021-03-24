@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PegColor } from '../models/peg-color';
 import { PegType } from '../models/peg-type';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'mm-peg',
@@ -24,6 +26,14 @@ export class PegComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  @Output() // import { Output } from '@angular/core';
+  pegClick: EventEmitter<void> = new EventEmitter(); // import { EventEmitter } from '@angular/core';
+  // Fontos, hogy a jó csomagból importáljuk ezt az osztályt, mert több helyen is megtalálható!
+
+  onPegClicked() {
+    this.pegClick.emit();
   }
 
 }
